@@ -1,6 +1,6 @@
 name: Jules PR Review
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
 
 concurrency:
@@ -16,6 +16,8 @@ jobs:
       checks: write
     steps:
       - uses: thalesraymond/jules-pr-reviewer@v1
+        env:
+          GITHUB_EVENT_NAME: pull_request
         with:
           jules_api_key: ${{ secrets.JULES_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
